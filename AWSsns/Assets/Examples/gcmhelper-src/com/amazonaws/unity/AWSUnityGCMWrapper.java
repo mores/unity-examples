@@ -8,7 +8,7 @@ import android.content.pm.PackageManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.unity3d.player.UnityPlayer;
 
 import java.io.IOException;
@@ -18,33 +18,37 @@ public class AWSUnityGCMWrapper {
 	private static final String TAG = "AWSUnityGCMWrapper";
 
 	public static String register(final String senderIds) {
-		try {
+		//try {
 			if (senderIds == null) {
 				return "";
 			}
 			Activity activity = UnityPlayer.currentActivity;
-			GoogleCloudMessaging gcm = GoogleCloudMessaging
-					.getInstance(activity);
-			String regId = gcm.register(senderIds);
-			storeRegistrationId(activity, regId);
-			return regId;
+			FirebaseMessaging gcm = FirebaseMessaging
+					.getInstance();
+			//String regId = gcm.register(senderIds);
+			//StoreRegistrationId(activity, regId);
+			return "";
+		/*
 		} catch (IOException e) {
 			Log.e(TAG, "failed to register the to gcm");
 			Log.e(TAG, "exception = " + e.getMessage());
 		}
 		return "";
+		*/
 	}
 
 	public static void unregister() {
-		try {
+		//try {
 			Activity activity = UnityPlayer.currentActivity;
-			GoogleCloudMessaging gcm = GoogleCloudMessaging
-					.getInstance(activity);
-			gcm.unregister();
+			FirebaseMessaging gcm = FirebaseMessaging
+					.getInstance();
+			//gcm.unregister();
+		/**
 		} catch (IOException e) {
 			Log.e(TAG, "failed to unregister from gcm");
 			Log.e(TAG, "exception = " + e.getMessage());
 		}
+		*/
 	}
 
 	public static boolean isRegistered(Context context) {
